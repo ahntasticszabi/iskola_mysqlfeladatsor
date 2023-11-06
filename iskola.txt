@@ -1,0 +1,155 @@
+1.
+	a.,
+	CREATE DATABASE iskola
+		DEFAULT CHARACTER SET latin2
+		DEFAULT COLLATE latin2_hungarian_ci;
+	
+	b., 
+	CREATE TABLE tanulok (
+		nev varchar(40),
+		osztaly char(3),
+		kor int
+		PRIMARY KEY (nev)
+		);
+	
+	c.,
+	ALTER TABLE tanulok 
+		ALTER kor SET DEFAULT '14';
+
+Beimportálás	
+	INSERT INTO tanulok
+		VALUES ('Jánosi János', '10A', 14),
+		('Egyed Anna', '10B', 14),
+		('Bácskai Emese', '10A', 15),
+		('Balla Béla', '10B', 16),
+		('Egyem Károly', '10A', 14),
+		('Néma Levente', '11A', 15),
+		('Nagy Kata', '11A', 16),
+		('Nagy Ákos', '11B', 16),
+		('Aranyos Jolán', '11C', 17),
+		('Szalay Borbála', '11C', 16),
+		('Kósa Ferenc', '11B', 16),
+		('Kányi Máté', '11C', 17),
+		('Zoób Eszter', '11A', 15),
+		('Csernyik Éva', '12A', 17),
+		('Csóka Csaba', '12A', 17),
+		('Fóka Ferenc', '12A', 18);
+	
+2.
+	a.,
+	SELECT nev, osztaly
+		FROM tanulok;
+
+	b.,
+	SELECT * 
+		FROM tanulok;
+	
+	c.,
+	SELECT nev 
+		FROM tanulok 
+		WHERE osztaly = "11C";
+	
+	d.,
+	SELECT nev, osztaly
+		FROM tanulok
+		WHERE kor = "16";
+	
+	e.,
+	SELECT nev, kor
+		FROM tanulok
+		WHERE kor BETWEEN '14' AND '17';
+	
+	f.,
+	/1
+	SELECT nev, kor
+		FROM tanulok
+		WHERE kor NOT BETWEEN '16' AND '17';
+	
+	/2
+	SELECT nev, kor
+		FROM tanulok
+		WHERE kor < '16' OR kor > '17';
+
+	g.,
+	SELECT nev
+		FROM tanulok
+		WHERE kor = '15' AND osztaly = '11A';
+	
+	h.,
+	SELECT nev, kor 
+		FROM tanulok
+		WHERE kor = '17' AND osztaly LIKE '11%';
+	
+	i.,
+	SELECT nev, kor
+		FROM tanulok
+		WHERE kor = '17' AND osztaly LIKE '11%';
+		
+	j.,
+	SELECT nev, osztaly
+		FROM tanulok
+		ORDER BY nev;
+		
+	k.,
+	SELECT nev, osztaly
+		FROM tanulok
+		ORDER BY osztaly, nev;
+		
+	l.,
+	SELECT nev, osztaly
+		FROM tanulok
+		WHERE osztaly = '10A'
+		ORDER BY nev DESC;
+		
+	m.,
+	SELECT nev, osztaly, kor
+		FROM tanulok
+		WHERE osztaly LIKE '10%'
+		ORDER BY kor DESC;
+		
+	n.,
+	SELECT nev, osztaly, kor
+		FROM tanulok
+		WHERE osztaly LIKE '%A'
+		ORDER BY osztaly, kor DESC, nev;
+		
+	o.,
+	/1
+	SELECT DISTINCT osztaly
+		FROM tanulok
+		ORDER BY osztaly;
+	/2
+	SELECT osztaly
+		FROM tanulok
+		GROUP BY osztaly;
+		
+	p.,
+	/1
+	SELECT DISTINCT kor
+		FROM tanulok
+		ORDER BY kor DESC;
+	/2
+	SELECT kor
+		FROM tanulok
+		GROUP BY kor 
+		ORDER BY kor DESC;
+		
+	q.,
+	/1
+	SELECT DISTINCT osztaly, kor 
+		FROM tanulok 
+		ORDER BY osztaly, kor;
+		
+	/2
+	SELECT osztaly, kor 
+		FROM tanulok
+		GROUP BY osztaly, kor
+		ORDER BY osztaly, kor;
+		
+	r.,
+	SELECT nev 
+		FROM tanulok
+		WHERE nev BETWEEN 'Egyem Károly' AND 'Néma Levente';
+	
+	
+
